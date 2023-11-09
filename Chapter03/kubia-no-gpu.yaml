@@ -1,11 +1,10 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: kubia-manual
+  name: kubia-no-gpu
 spec:
+  nodeSelector:
+    no_gpu: "should_fail"
   containers:
   - image: khromau/kubia
     name: kubia
-    ports:
-    - containerPort: 8080
-      protocol: TCP
