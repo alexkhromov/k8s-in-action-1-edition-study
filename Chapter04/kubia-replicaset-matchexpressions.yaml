@@ -1,4 +1,4 @@
-apiVersion: apps/v1beta2
+apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
   name: kubia
@@ -6,15 +6,17 @@ spec:
   replicas: 3
   selector:
     matchExpressions:
-      - key: app
-        operator: In
+      - key: chapter
+        operator: Exists
+      - key: chapter
+        operator: NotIn
         values:
-         - kubia
+         - "05"
   template:
     metadata:
       labels:
-        app: kubia
+        chapter: "04"
     spec:
       containers:
       - name: kubia
-        image: luksa/kubia
+        image: khromau/kubia

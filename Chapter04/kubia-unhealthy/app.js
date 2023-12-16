@@ -1,7 +1,8 @@
+console.log("Kubia server start initialization...");
+
 const http = require('http');
 const os = require('os');
-
-console.log("Kubia server starting...");
+const ts = require('log-timestamp');
 
 var requestCount = 0;
 
@@ -20,3 +21,4 @@ var handler = function(request, response) {
 var www = http.createServer(handler);
 www.listen(8080);
 
+console.log("Kubia server finish initialization...");

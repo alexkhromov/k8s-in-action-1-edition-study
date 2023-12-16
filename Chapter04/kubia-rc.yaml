@@ -10,9 +10,10 @@ spec:
     metadata:
       labels:
         app: kubia
+        chapter: "04"
     spec:
       containers:
       - name: kubia
-        image: luksa/kubia
+        image: khromau/kubia
         ports:
         - containerPort: 8080

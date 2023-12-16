@@ -1,0 +1,7 @@
+{
+  "name": "kubia-unhealthy",
+  "version": "1.0.0",
+  "dependencies": {
+    "log-timestamp": "^0.3.0"
+  }
+}
