@@ -1,0 +1,35 @@
+#### LOCAL USE ####
+### create private key:
+openssl genrsa -out tls.key 2048
+
+### create certificate:
+MSYS_NO_PATHCONV=1 openssl req -new -key tls.key -out tls.csr \
+ -subj '/CN=system:node:kubia.example.com;/O=system:nodes' \
+ -addext 'subjectAltName=DNS:kubia.example.com'
+
+### create a CertificateSigningRequest:
+cat <<EOF | kubectl apply -f -
+apiVersion: certificates.k8s.io/v1
+kind: CertificateSigningRequest
+metadata:
+  name: kubia
+spec:
+  request: $(cat tls.csr | base64 | tr -d '\n')
+  signerName: kubernetes.io/kubelet-serving
+  usages:
+  - digital signature
+  - key encipherment
+  - server auth
+EOF
+
+### approve certificate:
+kubectl certificate approve kubia
+
+### retrieve signed certificate:
+kubectl get csr kubia -o jsonpath='{.status.certificate}' | base64 --decode > tls.crt
+
+### create secret:
+kubectl create secret tls tls-secret --cert=tls.crt --key=tls.key
+
+
+#### GKE USE ####
