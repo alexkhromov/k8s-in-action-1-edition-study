@@ -33,3 +33,14 @@ kubectl create secret tls tls-secret --cert=tls.crt --key=tls.key
 
 
 #### GKE USE ####
+### setup domain name
+https://hpanel.hostinger.com/domains
+
+### setup cloud dns record
+https://www.youtube.com/watch?v=1lsFYHtWbEc
+
+### setup static ip and ingress
+https://cloud.google.com/kubernetes-engine/docs/tutorials/configuring-domain-name-static-ip
+https://cloud.google.com/kubernetes-engine/docs/tutorials/http-balancer
+https://cloud.google.com/vpc/network-pricing#ipaddress
+https://cert-manager.io/docs/tutorials/getting-started-with-cert-manager-on-google-kubernetes-engine-using-lets-encrypt-for-ingress-ssl/#5-create-an-ingress
